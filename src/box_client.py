@@ -1,6 +1,7 @@
 import boxsdk as box
 import os
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -12,5 +13,7 @@ auth = box.OAuth2(
 
 client = box.Client(auth)
 
-user = client.user().get()
-print('user: '+ user.id)
+items = client.get_recent_items()
+for item in items:
+    print(item.item.name)
+
